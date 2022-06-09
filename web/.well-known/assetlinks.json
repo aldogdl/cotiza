@@ -1,0 +1,22 @@
+[
+    {
+    "relation": [
+        "delegate_permission/common.handle_all_urls"
+    ],
+    "target" : {
+        "namespace": "android_app",
+        "package_name": "com.autoparnet.proveedor",
+        "sha256_cert_fingerprints": ["B4:A8:67:7C:8D:75:37:74:83:F6:DE:04:9F:79:37:39:3A:4B:B4:49"]
+        }
+    },
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target" : {
+            "namespace": "android_app",
+            "package_name": "com.autoparnet.cotiza",
+            "sha256_cert_fingerprints": ["B4:A8:67:7C:8D:75:37:74:83:F6:DE:04:9F:79:37:39:3A:4B:B4:49"]
+        }
+    }
+]
