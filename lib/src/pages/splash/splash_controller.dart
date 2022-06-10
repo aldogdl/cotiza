@@ -101,6 +101,7 @@ class SplashControllerState extends State<SplashController> {
     // print(fbm.tokenMsg);
     if(fbm.tokenMsg.isNotEmpty) {
 
+      if(_userProv.user.isEmpty) { return; }
       final us = _userProv.user.getAt(0);
 
       if(us != null) {

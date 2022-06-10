@@ -20,7 +20,6 @@ import '../../providers/repos_pendientes_prov.dart';
 import '../../providers/repos_proceso_prov.dart';
 import '../../providers/pestanias_prov.dart';
 import '../../services/fbm_google.dart';
-import '../../widgets/outlets_pzas/oulets_pzas.dart';
 import '../../widgets/varios_widgets.dart';
 import '../../widgets/get_auto/auto_controller.dart';
 import '../../widgets/get_fotos/singleton/picker_pictures.dart';
