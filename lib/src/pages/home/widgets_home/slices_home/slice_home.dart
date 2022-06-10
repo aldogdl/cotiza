@@ -1,7 +1,8 @@
-import 'package:autoparnet_cotiza/src/pages/home/widgets_home/slices_home/cotiza_aqui.dart';
-import 'package:autoparnet_cotiza/src/pages/home/widgets_home/slices_home/refa_digital.dart';
-import 'package:autoparnet_cotiza/vars/globals.dart';
 import 'package:flutter/material.dart';
+
+import 'package:autoparnet_cotiza/vars/globals.dart';
+
+import 'slice_main.dart';
 
 class SlicesHome extends StatelessWidget {
 
@@ -18,7 +19,9 @@ class SlicesHome extends StatelessWidget {
 
     double maxW = globals.getMaxWidht(constraints);
     double maxH = globals.getHeight(context);
-
+    List<Map<String, dynamic>> x = _contents();
+    final ctr = PageController();
+  
     return Container(
       constraints: BoxConstraints.expand(
         width: maxW,
@@ -28,15 +31,53 @@ class SlicesHome extends StatelessWidget {
         color: Colors.black87
       ),
       child: SizedBox.expand(
-        child: PageView(
-          controller: PageController(),
+        child: PageView.builder(
+          controller: ctr,
           physics: const BouncingScrollPhysics(),
-          children: [
-            RefaDigital(maxW: maxW),
-            CotizaAqui(maxW: maxW)
-          ],
+          itemCount: x.length,
+          itemBuilder: (_, index) {
+
+            return SliceMain(
+              pageCtr: ctr,
+              maxW: maxW,
+              data: x[index],
+              itemCount: x.length,
+              index: index,
+            );
+          },
         ),
       ),
     );
+  }
+
+  ///
+  List<Map<String, dynamic>> _contents() {
+
+    return [
+      {
+        'titulo': 'La Refaccionaria Digital más Grande de México',
+        'parrafo': 'Contamos con una red de cientos de proveedores lo cual te '
+          'GARANTIZA, encontrar las autopartes que necesitas.',
+        'poster': {
+          'label1': 'RASTREAMOS', 'label2': 'TUS AUTOPARTES', 'ico': Icons.extension
+        },
+      },
+      {
+        'titulo': 'Nunca fue tan fácil COTIZAR refacciones',
+        'parrafo': 'Tú presiona un botón. Nosotros, nos encargamos del resto. '
+          'Compara PRECIO, CALIDAD y SERVICIO.',
+        'poster': {
+          'label1': 'TE ENVIAMOS', 'label2': 'COTIZACIONES', 'ico': Icons.list_alt
+        },
+      },
+      {
+        'titulo': '¿Atrasado en tu trabajo por falta de piezas?',
+        'parrafo': '¡No te preocupes! nosotros te ayudamos en la BÚSQUEDA, COSTO y '
+          'entrega a DOMICILIO.',
+        'poster': {
+          'label1': 'A LA PUERTA', 'label2': 'DE TU TALLER', 'ico': Icons.delivery_dining
+        },          
+      },
+    ];
   }
 }
