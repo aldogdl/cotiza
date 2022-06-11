@@ -756,21 +756,23 @@ class _FrmCotizaState extends State<FrmCotiza> {
           fotos: ftNoSend,
           onFinish: (Map<String, dynamic> result) async {
             
+            Navigator.of(context).pop();
+            
             if(result['msg'] == 'ok') {
               if(!onlyCheck) {
 
-                Navigator.of(context).pop();
                 fotosYaEnviadas.addAll(List<String>.from(result['fotos']));
                 if(_revisaFotosDesde == 'add') {
                   await _agregarMasPiezas('add');
+                  return;
                 }else{
                   final from = (pzaCurrent.hasFotos) ? 'normal' : 'fotos';
                   await _terminarSolicitud(from:from);
+                  return;
                 }
               }else{
                 pzaCurrent.hasFotos = false;
               }
-
             }else{
               // Regresar a las fotos sin guardar pieza
               pzaCurrent.hasFotos = false;

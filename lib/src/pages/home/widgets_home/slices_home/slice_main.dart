@@ -38,7 +38,7 @@ class SliceMain extends StatelessWidget {
       ),
       child: Row(
         children: [
-          // Lado azul del Icono
+          // Lado del msg y el Icono
           Container(
             width: maxW * 0.22,
             height: MediaQuery.of(context).size.height,
@@ -46,13 +46,22 @@ class SliceMain extends StatelessWidget {
               image: DecorationImage(
                 image: AssetImage('assets/images/bg.jpg'),
                 fit: BoxFit.none,
-                repeat: ImageRepeat.noRepeat
+                repeat: ImageRepeat.noRepeat,
+                colorFilter: ColorFilter.mode(Colors.black, BlendMode.softLight)
               ),
-              color: Color.fromARGB(255, 13, 102, 236),
+              color: Color.fromARGB(255, 59, 59, 59),
               borderRadius: BorderRadius.all(Radius.circular(5)),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: _getMsg(data['poster'])
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                ),
+                _getMsg(data['poster'])
+              ],
+            )
           ),
           const SizedBox(width: 8),
           Expanded(
@@ -99,26 +108,29 @@ class SliceMain extends StatelessWidget {
   ///
   Widget _getMsg(Map<String, dynamic> data) {
 
-    return RotatedBox(
-      quarterTurns: -1,
-      child: Row(
-        children: [
-          const SizedBox(width: 5),
-          RotatedBox(
-            quarterTurns: 1,
-            child: Icon(data['ico'], size: 35, color: const Color.fromARGB(255, 57, 100, 240)),
-          ),
-          const SizedBox(width: 5),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _txt(data['label1'], 17),
-              _txt(data['label2'], 13.5),
-            ],
-          )
-        ],
-      )
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: RotatedBox(
+        quarterTurns: -1,
+        child: Row(
+          children: [
+            const SizedBox(width: 5),
+            RotatedBox(
+              quarterTurns: 1,
+              child: Icon(data['ico'], size: 35, color: const Color(0xffc4c4c4)),
+            ),
+            const SizedBox(width: 5),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _txt(data['label1'], 17),
+                _txt(data['label2'], 13.5),
+              ],
+            )
+          ],
+        )
+      ),
     );
   }
 
@@ -139,7 +151,7 @@ class SliceMain extends StatelessWidget {
     return TextStyle(
       fontSize: sf,
       fontWeight: FontWeight.bold,
-      color: Colors.black,
+      color: (sf != 17) ? const Color(0xffc4c4c4) : const Color(0xffFFFFFF).withOpacity(0.8),
       letterSpacing: 1.5
     );
   }

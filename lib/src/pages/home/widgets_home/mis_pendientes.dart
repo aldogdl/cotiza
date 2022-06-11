@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:autoparnet_cotiza/config/sng_manager.dart';
 import 'package:autoparnet_cotiza/vars/globals.dart';
 
+import '../../../../vars/ref_cotiz.dart';
 import 'repos_ctrls.dart';
 import 'repos_ctrs_holder.dart';
 import '../data_shared/ds_repo.dart';
@@ -86,6 +87,7 @@ class _MisPendientesState extends State<MisPendientes> {
   Future<void> _isSameRepoAndAction(String accion, ReposPendientesProv provi) async {
 
     final prov = context.read<PzasToCotizarProv>();
+    final pestania = context.read<PestaniasProv>();
 
     switch (accion) {
       case 'onTap':
@@ -96,9 +98,11 @@ class _MisPendientesState extends State<MisPendientes> {
         bool canChange = await canChangeOfOrden(provi, 'onNext');
         if(canChange) {
           
-          context.read<PestaniasProv>().pestaniaSelect = 'Cotizar';
+          pestania.pestaniaSelect = 'Cotizar';
           await provi.showNextRepo();
-          await _dsRepo.isSameRepoSelect(context, idOrdenS: provi.inSceneRepo['idMain']);
+          if(mounted) {
+            await _dsRepo.isSameRepoSelect(context, idOrdenS: provi.inSceneRepo['idMain']);
+          }
           
           prov.hasFotos = false;
           prov.buildPzaNewOfOrden(idOrd: _dsRepo.idRepoMainSelectCurrent);
@@ -110,9 +114,11 @@ class _MisPendientesState extends State<MisPendientes> {
         bool canChange = await canChangeOfOrden(provi, 'onBack');
         if(canChange) {
 
-          context.read<PestaniasProv>().pestaniaSelect = 'Cotizar';
+          pestania.pestaniaSelect = 'Cotizar';
           await provi.showPreviewRepo();
-          await _dsRepo.isSameRepoSelect(context, idOrdenS: provi.inSceneRepo['idMain']);
+          if(mounted) {
+            await _dsRepo.isSameRepoSelect(context, idOrdenS: provi.inSceneRepo['idMain']);
+          }
 
           prov.hasFotos = false;
           prov.buildPzaNewOfOrden(idOrd: _dsRepo.idRepoMainSelectCurrent);
@@ -195,6 +201,8 @@ class _MisPendientesState extends State<MisPendientes> {
   ///
   Future<void> _eliminarOrden(ReposPendientesProv provi) async {
 
+    final pestania = context.read<PestaniasProv>();
+    final pzaCurrent = context.read<PzasToCotizarProv>();
     bool? acc = await variosWidgets.dialog(
       cntx: context,
       tipo: 'yesOrNot',
@@ -207,7 +215,8 @@ class _MisPendientesState extends State<MisPendientes> {
 
     if(acc ?? false) {
 
-      context.read<PestaniasProv>().pestaniaSelect = 'none';
+      final refCotz = getSngOf<RefCotiz>();
+      pestania.pestaniaSelect = 'none';
       int idOrden = await provi.eliminarCurrentPendiente();
       
       if(_dsRepo.ordenPzas.values.isNotEmpty) {
@@ -222,6 +231,8 @@ class _MisPendientesState extends State<MisPendientes> {
         _dsRepo.ordenPzas.compact();
       }
       await _repoEm.deleteOrdenFromServer(idOrden);
+      pzaCurrent.keysPiezas.clear();
+      refCotz.keyPiezaEdit = -1;
     }
   }
   

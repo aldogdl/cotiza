@@ -388,7 +388,7 @@ class _FrmCotizaCamposState extends State<FrmCotizaCampos> {
     );
   }
 
-    ///
+  ///
   Widget _btnActionFrm({
     required String label,
     required Widget icono,
@@ -854,10 +854,13 @@ class _FrmCotizaCamposState extends State<FrmCotizaCampos> {
     _ctrNotas.text = '';
     _ctrOrigen.text= _refCotz.origenes.first;
     
+    // Si es web, colocamos el foco en el campo pieza
     if(kIsWeb) {
-      Future.delayed(const Duration(milliseconds: 300), (){
+      Future.delayed(const Duration(milliseconds: 150), (){
         _focusPza.requestFocus();
       });
+    }else{
+      FocusManager.instance.primaryFocus?.unfocus();
     }
   }
 }
