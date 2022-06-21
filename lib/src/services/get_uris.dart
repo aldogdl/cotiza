@@ -7,8 +7,8 @@ class GetUris{
   static Globals globals = getSngOf<Globals>();
   
   static const String _href  = 'cotiza';
-  static const String _env  = 'dev';
-  static const String _baseD= 'http://192.168.1.66/autoparnet/public_html';
+  static const String _env  = 'prod';
+  static const String _baseD= 'http://192.168.1.74/autoparnet/public_html';
   static const String _baseP= 'https://autoparnet.com';
   static const String _pfxP = 'data-shared';
   // static const String _pfxP = 'api/firewalls/publicas';
@@ -19,7 +19,7 @@ class GetUris{
 
   ///
   static String get base => (_env == 'dev') ? _baseD : _baseP;
-  static String get baseSelf => (_env == 'dev') ? _baseD : '$_baseP/$_href';
+  static String get baseSelf => (_env == 'dev') ? _baseD : _baseP;
 
   ///
   static String getUriBy(String namePath) {
@@ -31,20 +31,15 @@ class GetUris{
   }
 
   ///
-  static String getUriLogoMarcas() {
-
-    String prefixDev = (_env == 'dev') ? '' : '/$_href';
-    return '$base$prefixDev/mrks_logos';
-  }
+  static String getUriLogoMarcas() => '$base/mrks_logos';
 
   ///
   static String getUriBgLogin(String file) {
 
-    String prefixDev = (_env == 'dev') ? '/$_href/web' : '/$_href';
     if(globals.isWeb) {
-      return '$baseSelf/images/login_app/$file';
+      return '$base/images/login_app/$file';
     }
-    return '$base$prefixDev/images/login_app/$file';
+    return '$base/images/login_app/$file';
   }
 
   ///
@@ -68,33 +63,30 @@ class GetUris{
   ///
   static Map<String, dynamic> _getRutasApis() {
 
-    Map<String, dynamic> prefix = {
-      'pub' : 'cotiza/',
-      'api' : 'api/cotiza/',
-    };
+    const pfx = <String, dynamic>{'pub' : 'cotiza/', 'api' : 'api/cotiza/'};
 
     return {
       'login_check_admin'   : {'rut' : 'secure-api-check'},
-      'get_all_marcas'      : {'rut' : '${prefix['pub']}get-all-marcas/'},
-      'get_status_ordenes'  : {'rut' : '${prefix['pub']}get-status-ordenes/'},
-      'get_modelos_by_marca': {'rut' : '${prefix['pub']}get-modelos-by-marca/'},
-      'get_user_by_campo'   : {'rut' : '${prefix['api']}get-user-by-campo/'},
-      'set_token_msg_user'  : {'rut' : '${prefix['api']}set-token-messaging-by-id-user/'},
-      'is_tokenapz_caducado': {'rut' : '${prefix['api']}is-tokenapz-caducado/'},
-      'set_orden'           : {'rut' : '${prefix['api']}set-orden/'},
-      'set_pieza'           : {'rut' : '${prefix['api']}set-pieza/'},
-      'del_pieza'           : {'rut' : '${prefix['api']}del-pieza/'},
-      'enviar_orden'        : {'rut' : '${prefix['api']}enviar-orden/'},
-      'ordenes_by_seccion'  : {'rut' : '${prefix['api']}get-ordenes-by-own-and-seccion/'},
-      'pzas_by_lstOrdenes'  : {'rut' : '${prefix['api']}get-piezas-by-lst-ordenes/'},
-      'upload_img'          : {'rut' : '${prefix['api']}upload-img/'},
-      'delImg_of_orden_tmp' : {'rut' : '${prefix['api']}del-img-of-orden-tmp/'},
-      'setFileShare_device' : {'rut' : '${prefix['api']}set-file-share-img-device/'},
-      'checkShare_imgDevice': {'rut' : '${prefix['api']}check-share-img-device/'},
-      'openShare_imgDevice' : {'rut' : '${prefix['pub']}open-share-img-device/'},
-      'finShare_imgDevice'  : {'rut' : '${prefix['api']}fin-share-img-device/'},
-      'delShare_imgDevice'  : {'rut' : '${prefix['api']}del-share-img-device/'},
-      'delete_orden'        : {'rut' : '${prefix['api']}delete-orden/'},
+      'get_all_marcas'      : {'rut' : '${pfx['pub']}get-all-marcas/'},
+      'get_status_ordenes'  : {'rut' : '${pfx['pub']}get-status-ordenes/'},
+      'get_modelos_by_marca': {'rut' : '${pfx['pub']}get-modelos-by-marca/'},
+      'get_user_by_campo'   : {'rut' : '${pfx['api']}get-user-by-campo/'},
+      'set_token_msg_user'  : {'rut' : '${pfx['api']}set-token-messaging-by-id-user/'},
+      'is_tokenapz_caducado': {'rut' : '${pfx['api']}is-tokenapz-caducado/'},
+      'set_orden'           : {'rut' : '${pfx['api']}set-orden/'},
+      'set_pieza'           : {'rut' : '${pfx['api']}set-pieza/'},
+      'del_pieza'           : {'rut' : '${pfx['api']}del-pieza/'},
+      'enviar_orden'        : {'rut' : '${pfx['api']}enviar-orden/'},
+      'ordenes_by_seccion'  : {'rut' : '${pfx['api']}get-ordenes-by-own-and-seccion/'},
+      'pzas_by_lstOrdenes'  : {'rut' : '${pfx['api']}get-piezas-by-lst-ordenes/'},
+      'upload_img'          : {'rut' : '${pfx['api']}upload-img/'},
+      'delImg_of_orden_tmp' : {'rut' : '${pfx['api']}del-img-of-orden-tmp/'},
+      'setFileShare_device' : {'rut' : '${pfx['api']}set-file-share-img-device/'},
+      'checkShare_imgDevice': {'rut' : '${pfx['api']}check-share-img-device/'},
+      'openShare_imgDevice' : {'rut' : '${pfx['pub']}open-share-img-device/'},
+      'finShare_imgDevice'  : {'rut' : '${pfx['api']}fin-share-img-device/'},
+      'delShare_imgDevice'  : {'rut' : '${pfx['api']}del-share-img-device/'},
+      'delete_orden'        : {'rut' : '${pfx['api']}delete-orden/'},
 
 
       'save_foto_to'        : {'pfxP': _pfapP, 'rut' : 'save-foto-to'},
