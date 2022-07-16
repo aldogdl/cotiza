@@ -10,9 +10,8 @@ import 'package:autoparnet_cotiza/vars/globals.dart';
 import '../services/pushes_service.dart';
 import '../pages/home/data_shared/ds_repo.dart';
 
-const String vapidKey = 'BFK5y88JM1-62Lf7cjkeRIdVxWGXKkADWonPv5JH_bXzT5cICsXj4YH3lcqWxsekZiwisVOKY464u5eOTvXE6GA';
 final Map<String, dynamic> cotizaciones = {
-  'id'   : 'RESCOT',
+  'id'   : 'ANETPUSH',
   'name' : 'Notificaciones de Respuestas',
   'sound': 'cotizaciones',
   'descr': 'Recibe respuestas a tus cotizaciones',
@@ -29,7 +28,7 @@ class FBMGoogle {
   FlutterLocalNotificationsPlugin fln = FlutterLocalNotificationsPlugin();
   NotificationSettings? settings;
   bool isInitialized = false;
-  String tokenMsg = '';
+  String? tokenMsg = '';
 
   ///
   set setContextCurrent(BuildContext cntx) {
@@ -91,10 +90,9 @@ class FBMGoogle {
   ///
   Future<void> recuperandoTokenPush() async{
 
-    if(tokenMsg.isEmpty) {
-      await FirebaseMessaging.instance.getToken(vapidKey: vapidKey).then((value){
-        tokenMsg = value ?? '';
-      });
+    // eqoFZXykQ66l6QEqAu5nqZ:APA91bFwOqYizILkS5kxGzcBkfit_2p3LgryUkCVLkAFcjDsKs3pJjtN6iiesLf6H5aWe3vqhrgvROu92uzxVUJ7aAPoRIxROr_joa1UmFhKuNMCOyh-W_u8Ton9VZ0pa6S9P0ltxZDc
+    if(tokenMsg == null || tokenMsg!.isEmpty) {
+      tokenMsg = await msgAppPush!.getToken();
     }
   }
 

@@ -47,30 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCn83mT0cki3zzeVN2maZUBukrPotp5yzQ',
-    appId: '1:788916468765:web:0c87b98b4387a6e4d7daf4',
-    messagingSenderId: '788916468765',
-    projectId: 'cotiza-28808',
-    authDomain: 'cotiza-28808.firebaseapp.com',
-    storageBucket: 'cotiza-28808.appspot.com',
+    apiKey: 'AIzaSyB9t937zCgp2hEua35sVTokZ_R5PQPn2nQ',
+    appId: '1:733608066006:web:d8c66408369eeaa12dc277',
+    messagingSenderId: '733608066006',
+    projectId: 'cotiza-13776',
+    authDomain: 'cotiza-13776.firebaseapp.com',
+    storageBucket: 'cotiza-13776.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBAmQBPIqCGiGEIGa4sGJQMmVf2fwPDbsU',
-    appId: '1:788916468765:android:144f2d05d35bb310d7daf4',
-    messagingSenderId: '788916468765',
-    projectId: 'cotiza-28808',
-    storageBucket: 'cotiza-28808.appspot.com',
+    apiKey: 'AIzaSyC3cGJCdT12nahRFEpzgPpRMpMZKD5Lt1A',
+    appId: '1:733608066006:android:07a4d5fa8254a23e2dc277',
+    messagingSenderId: '733608066006',
+    projectId: 'cotiza-13776',
+    storageBucket: 'cotiza-13776.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCE2e5PaxOElVE8Clpcys8el5V7vb14_2I',
-    appId: '1:788916468765:ios:c4a8ce177f0e4a1ed7daf4',
-    messagingSenderId: '788916468765',
-    projectId: 'cotiza-28808',
-    storageBucket: 'cotiza-28808.appspot.com',
-    androidClientId: '788916468765-638p0741ad8gu88hn45epbhmsmf8ac6q.apps.googleusercontent.com',
-    iosClientId: '788916468765-g9gvi1klupak6hqp870smap8vp954du2.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDiyemD7vo7nX_SRVxWbLrIp8AJ8qwNnxk',
+    appId: '1:733608066006:ios:1bb5987ef08e3f782dc277',
+    messagingSenderId: '733608066006',
+    projectId: 'cotiza-13776',
+    storageBucket: 'cotiza-13776.appspot.com',
+    androidClientId: '733608066006-be8o88qju60us98b4j2vi90oagd5u18u.apps.googleusercontent.com',
+    iosClientId: '733608066006-iff55g5djo23lniokrha5ln0l7k7nlub.apps.googleusercontent.com',
     iosBundleId: 'com.autoparnet.cotiza',
   );
 }

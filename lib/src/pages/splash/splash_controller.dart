@@ -98,8 +98,8 @@ class SplashControllerState extends State<SplashController> {
 
     await fbm.init();
     await fbm.recuperandoTokenPush();
-    // print(fbm.tokenMsg);
-    if(fbm.tokenMsg.isNotEmpty) {
+
+    if(fbm.tokenMsg != null) {
 
       if(_userProv.user.isEmpty) { return; }
       final us = _userProv.user.getAt(0);
@@ -109,9 +109,9 @@ class SplashControllerState extends State<SplashController> {
         username = us.username.toUpperCase();
         if(us.tkMsging != fbm.tokenMsg) {
           setState(() { taskMsg = 'Respaldo TokenPush'; });
-          us.tkMsging = fbm.tokenMsg;
+          us.tkMsging = fbm.tokenMsg!;
           us.save();
-          await _userProv.enviandoTokenPush(fbm.tokenMsg, globals.idUser);
+          await _userProv.enviandoTokenPush(fbm.tokenMsg!, globals.idUser);
         }
       }
     }

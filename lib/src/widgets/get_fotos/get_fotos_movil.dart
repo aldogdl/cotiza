@@ -264,8 +264,8 @@ class _GetFotosMovilState extends State<GetFotosMovil> {
     );
   }
 
-  ///
-  void _onPermissionsResult(bool? granted) {
+  /// No esta en USO, se puede borrar si no se usa en el futuro
+  void onPermissionsResult(bool? granted) {
 
     if(granted != null) {
         
@@ -296,5 +296,5 @@ class _GetFotosMovilState extends State<GetFotosMovil> {
       }
     }
   }
-  
+
 }

@@ -6,7 +6,6 @@ class GetUris{
 
   static Globals globals = getSngOf<Globals>();
   
-  static const String _href  = 'cotiza';
   static const String _env  = 'prod';
   static const String _baseD= 'http://192.168.1.74/autoparnet/public_html';
   static const String _baseP= 'https://autoparnet.com';
